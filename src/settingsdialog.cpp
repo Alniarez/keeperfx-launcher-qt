@@ -7,6 +7,7 @@
 #include "settings.h"
 #include "launcheroptions.h"
 #include "cdn.h"
+#include "helper.h"
 
 #include <QDesktopServices>
 #include <QEvent>
@@ -474,6 +475,9 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     } else {
         ui->labelLauncherTranslators->setText(""); // Hide
     }
+
+    // Disable the scrolling of comboboxes when hovering over them and scrolling
+    Helper::disableAllComboBoxScrolls(this);
 }
 
 SettingsDialog::~SettingsDialog()
