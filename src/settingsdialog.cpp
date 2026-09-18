@@ -23,11 +23,6 @@ SettingsDialog::SettingsDialog(QWidget *parent)
 {
     ui->setupUi(this);
 
-    // Disable resizing and remove maximize button
-    setFixedSize(size());
-    setWindowFlag(Qt::WindowMaximizeButtonHint, false);
-    setWindowFlag(Qt::MSWindowsFixedSizeDialogHint);
-
     // Hide 'Multiplayer' tab until a future update requires it
     ui->tabWidget->tabBar()->setTabVisible(4, false);
 
@@ -117,11 +112,45 @@ SettingsDialog::SettingsDialog(QWidget *parent)
         ui->checkBoxAutoDetermineMaxFps->setDisabled(true);
     }
 
+    // Renderer
+    ui->comboBoxRenderer->addItem(tr("Software", "Renderer Dropdown"), "SOFTWARE");
+    if (KfxVersion::hasFunctionality("opengl_renderer") == true) {
+        ui->comboBoxRenderer->addItem(tr("OpenGL", "Renderer Dropdown"), "OPENGL");
+    } else {
+        ui->labelRenderer->setDisabled(true);
+        ui->comboBoxRenderer->setDisabled(true);
+    }
+
     if (KfxVersion::hasFunctionality("gui_and_neutral_blink_speed") == false) {
         ui->labelGuiBlinkRate->setDisabled(true);
         ui->lineEditGuiBlinkRate->setDisabled(true);
         ui->labelNeutralFlashRate->setDisabled(true);
         ui->lineEditNeutralFlashRate->setDisabled(true);
+    }
+
+    // Zoom towards cursor
+    if (KfxVersion::hasFunctionality("zoom_towards_mouse") == true) {
+        // Add cursor zoom dropdown options
+        ui->comboBoxZoomToMouse->addItem(tr("Never", "Zoom To Cursor Dropdown"), "OFF");
+        ui->comboBoxZoomToMouse->addItem(tr("Mousewheel only", "Zoom To Cursor Dropdown"), "WHEEL");
+        ui->comboBoxZoomToMouse->addItem(tr("Mousewheel & Keyboard", "Zoom To Cursor Dropdown"), "ON");
+    } else {
+        // Disable
+        ui->comboBoxZoomToMouse->setDisabled(true);
+        ui->labelZoomToMouse->setDisabled(true);
+    }
+
+    // Rotate around cursor
+    if (KfxVersion::hasFunctionality("rotate_around_mouse") == true) {
+        // Add cursor rotate dropdown options
+        ui->comboBoxRotateAroundMouse->addItem(tr("Never", "Rotate Around Cursor Dropdown"), "OFF");
+        ui->comboBoxRotateAroundMouse->addItem(tr("Always", "Rotate Around Cursor Dropdown"), "ON");
+        ui->comboBoxRotateAroundMouse->addItem(tr("Movement Keys Only (While holding Ctrl)", "Rotate Around Cursor Dropdown"), "ON MOVEMENT_KEYS");
+        ui->comboBoxRotateAroundMouse->addItem(tr("Rotation Keys Only", "Rotate Around Cursor Dropdown"), "ON ROTATION_KEYS");
+    } else {
+        // Disable
+        ui->comboBoxRotateAroundMouse->setDisabled(true);
+        ui->labelRotateAroundMouse->setDisabled(true);
     }
 
     // Tag Mode
@@ -176,9 +205,9 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     ui->comboBoxPlayButtonTheme->addItem(tr("Qt Fusion Dark", "Play Button Theme Dropdown"), "qt-fusion-dark");
     ui->comboBoxPlayButtonTheme->addItem(tr("DK Orange (default)", "Play Button Theme Dropdown"), "dk-orange");
 
-    // Launcher Download server
-    for (auto [key, info] : CDN::getEndpointList()) {
-        ui->comboBoxCDN->addItem(info.name, key);
+    // Launcher Download server (CDN)
+    for (const auto &[key, displayText] : CDN::getEndpointList().asKeyValueRange()) {
+        ui->comboBoxCDN->addItem(displayText, key);
     }
 
     // Screenshot type dropdown
@@ -445,6 +474,11 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     } else {
         ui->labelLauncherTranslators->setText(""); // Hide
     }
+
+    // Fake a resize event to trigger the initial layout update
+    QResizeEvent *fakeResizeEvent = new QResizeEvent(size(), size());
+    resizeEvent(fakeResizeEvent);
+    delete fakeResizeEvent;
 }
 
 SettingsDialog::~SettingsDialog()
@@ -683,6 +717,10 @@ void SettingsDialog::loadSettings()
         ui->lineEditNeutralFlashRate->setText(Settings::getKfxSetting("NEUTRAL_FLASH_RATE").toString());
     }
 
+    if (KfxVersion::hasFunctionality("opengl_renderer") == true) {
+        ui->comboBoxRenderer->setCurrentIndex(ui->comboBoxRenderer->findData(Settings::getKfxSetting("RENDERER").toString()));
+    }
+
     // =========================================================================
     // ================================ SOUND ==================================
     // =========================================================================
@@ -738,6 +776,9 @@ void SettingsDialog::loadSettings()
     ui->checkBoxUnlockCursorWhenPaused->setEnabled(Settings::getLauncherSetting("GAME_PARAM_ALT_INPUT") == false); // When alt input is DISABLED
     ui->checkBoxLockCursorPossession->setEnabled(Settings::getLauncherSetting("GAME_PARAM_ALT_INPUT") == true); // When alt input is ENABLED
 
+    ui->comboBoxZoomToMouse->setCurrentIndex(ui->comboBoxZoomToMouse->findData(Settings::getKfxSetting("ZOOM_TO_MOUSE").toString()));
+    ui->comboBoxRotateAroundMouse->setCurrentIndex(ui->comboBoxRotateAroundMouse->findData(Settings::getKfxSetting("ROTATE_AROUND_MOUSE").toString()));
+
     ui->checkBoxEnableTagModeToggle->setChecked(Settings::getKfxSetting("TAG_MODE_TOGGLING") == true);
     ui->comboBoxDefaultTagMode->setCurrentIndex(ui->comboBoxDefaultTagMode->findData(Settings::getKfxSetting("DEFAULT_TAG_MODE").toString()));
 
@@ -783,7 +824,13 @@ void SettingsDialog::loadSettings()
 
     ui->checkBoxAutoRemoveLeftoverFiles->setChecked(Settings::getLauncherSetting("AUTO_REMOVE_LEFTOVER_FILES") == true);
 
-    ui->comboBoxCDN->setCurrentIndex(ui->comboBoxCDN->findData(Settings::getLauncherSetting("CDN_ENDPOINT").toString()));
+    // CDN + fallback
+    QString savedKey = Settings::getLauncherSetting("CDN_ENDPOINT").toString();
+    int index = ui->comboBoxCDN->findData(savedKey);
+    if (index == -1) {
+        index = ui->comboBoxCDN->findData("keeperfx.net");
+    }
+    ui->comboBoxCDN->setCurrentIndex(index);
 }
 
 void SettingsDialog::saveSettings()
@@ -954,6 +1001,10 @@ void SettingsDialog::saveSettings()
         Settings::setKfxSetting("NEUTRAL_FLASH_RATE", ui->lineEditNeutralFlashRate->text());
     }
 
+    if (KfxVersion::hasFunctionality("opengl_renderer") == true) {
+        Settings::setKfxSetting("RENDERER", ui->comboBoxRenderer->currentData().toString());
+    }
+
     // =========================================================================
     // ================================ SOUND ==================================
     // =========================================================================
@@ -980,6 +1031,8 @@ void SettingsDialog::saveSettings()
     Settings::setKfxSetting("UNLOCK_CURSOR_WHEN_GAME_PAUSED", ui->checkBoxUnlockCursorWhenPaused->isChecked() == true);
     Settings::setKfxSetting("LOCK_CURSOR_IN_POSSESSION", ui->checkBoxLockCursorPossession->isChecked() == true);
     Settings::setKfxSetting("CURSOR_EDGE_CAMERA_PANNING", ui->checkBoxScreenEdgePanning->isChecked() == true);
+    Settings::setKfxSetting("ZOOM_TO_MOUSE", ui->comboBoxZoomToMouse->currentData().toString());
+    Settings::setKfxSetting("ROTATE_AROUND_MOUSE", ui->comboBoxRotateAroundMouse->currentData().toString());
 
     Settings::setKfxSetting("TAG_MODE_TOGGLING", ui->checkBoxEnableTagModeToggle->isChecked() == true);
     Settings::setKfxSetting("DEFAULT_TAG_MODE", ui->comboBoxDefaultTagMode->currentData().toString());
@@ -1017,7 +1070,8 @@ void SettingsDialog::saveSettings()
 
     Settings::setLauncherSetting("AUTO_REMOVE_LEFTOVER_FILES", ui->checkBoxAutoRemoveLeftoverFiles->isChecked() == true);
 
-    Settings::setLauncherSetting("CDN_ENDPOINT", ui->comboBoxCDN->currentData().toString());
+    // CDN
+    CDN::saveEndpoint(ui->comboBoxCDN->currentData().toString());
 
     // Close the settings screen
     this->close();
@@ -1116,6 +1170,15 @@ void SettingsDialog::addSettingsChangedHandler()
         });
     }
 
+    // Find all QSlider
+    QList<QSlider *> sliders = ui->tabWidget->findChildren<QSlider *>();
+    for (QSlider *slider : std::as_const(sliders)) {
+        connect(slider, &QSlider::sliderMoved, this, [this]() {
+            this->settingHasChanged = true;
+            ui->buttonBox->button(QDialogButtonBox::Save)->setDisabled(false);
+        });
+    }
+
     // Find all PopupSignalComboBox
     QList<PopupSignalComboBox *> popupComboBoxes = ui->tabWidget->findChildren<PopupSignalComboBox *>();
     for (PopupSignalComboBox *popupComboBox : std::as_const(popupComboBoxes)) {
@@ -1148,16 +1211,24 @@ void SettingsDialog::cancel()
 
 void SettingsDialog::setupDisplayMonitorDropdown()
 {
+    QWidget *parentWidget = ui->comboBoxDisplayMonitor->parentWidget();
+
     // Get some details of the placeholder combo box and delete it
-    QComboBox *oldComboBox = ui->comboBoxDisplayMonitor;
+    /*QComboBox *oldComboBox = ui->comboBoxDisplayMonitor;
     QRect geometry = oldComboBox->geometry();
     QWidget *parentWidget = oldComboBox->parentWidget();
-    delete ui->comboBoxDisplayMonitor;
+    delete ui->comboBoxDisplayMonitor;*/
 
     // Create the combobox that handles the popup signal
     // This signal is used to show and hide monitor display numers
     popupComboBoxMonitorDisplay = new PopupSignalComboBox(parentWidget);
-    popupComboBoxMonitorDisplay->setGeometry(geometry);
+
+    QLayout *layout = parentWidget->layout();
+    if (layout) {
+        layout->replaceWidget(ui->comboBoxDisplayMonitor, popupComboBoxMonitorDisplay);
+    }
+
+    delete ui->comboBoxDisplayMonitor;
 
     // Get the list of available screens
     QList<QScreen *> screens = QGuiApplication::screens();
@@ -1428,6 +1499,86 @@ void SettingsDialog::addCustomResolution(int width, int height, QComboBox *sourc
         if (index != -1) {
             sourceCombo->setCurrentIndex(index);
             sourceCombo->setProperty("previousIndex", index);
+        }
+    }
+}
+
+void SettingsDialog::switchContainerLayout(QWidget *container, bool useHorizontal) {
+
+    // Make sure container exists
+    if (!container) return;
+
+    // Variables
+    QList<QWidget*> widgets;
+    QLayoutItem *child;
+    QLayout *oldLayout = container->layout();
+
+    // Store widgets and delete the old layout
+    if (oldLayout) {
+        while ((child = oldLayout->takeAt(0)) != nullptr) {
+            if (child->widget()) {
+                widgets.append(child->widget());
+            }
+            delete child;
+        }
+        delete oldLayout;
+    }
+
+    // Create the new layout
+    QBoxLayout *newLayout;
+    if (useHorizontal) {
+        newLayout = new QHBoxLayout(container);
+    } else {
+        newLayout = new QVBoxLayout(container);
+    }
+
+    // Keep margins clean so it doesn't look bloated when wrapped
+    // newLayout->setContentsMargins(0, 0, 0, 0);
+
+    // Add widgets back
+    for (QWidget *widget : widgets) {
+
+        newLayout->addWidget(widget);
+
+        if (useHorizontal) {
+            widget->setVisible(true);
+        } else {
+            bool hasRealContent = false;
+            QLayout *wLayout = widget->layout();
+
+            if (wLayout) {
+                for (int i = 0; i < wLayout->count(); ++i) {
+                    QLayoutItem *item = wLayout->itemAt(i);
+                    if (item->widget() || item->layout()) {
+                        hasRealContent = true;
+                        break;
+                    }
+                }
+            } else {
+                hasRealContent = true;
+            }
+            widget->setVisible(hasRealContent);
+        }
+    }
+}
+
+void SettingsDialog::resizeEvent(QResizeEvent *event) {
+
+    // Original dialog resize event
+    QDialog::resizeEvent(event);
+
+    // Switch layout based on current window width
+    bool useHorizontal = (width() >= 800);
+
+    // Dynamically find all widgets named starting with "responsive_"
+    QList<QWidget*> responsiveContainers = this->findChildren<QWidget*>(QRegularExpression("^responsive_.*"));
+
+    // Loop trough all found containers
+    for (qsizetype i = 0; i < responsiveContainers.size(); ++i) {
+        QWidget* container = responsiveContainers.at(i);
+        // Only attempt to switch if the container has a layout assigned to it
+        if (container->layout()) {
+            switchContainerLayout(container, useHorizontal);
         }
     }
 }

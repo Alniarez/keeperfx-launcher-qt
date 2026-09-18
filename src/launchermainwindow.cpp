@@ -388,19 +388,17 @@ void LauncherMainWindow::setupPlayExtraMenu()
     }
 
     // Direct connect (MP) action
-    if (KfxVersion::hasFunctionality("direct_enet_connect") == true) {
-        menu->addAction(tr("Direct connect (MP)", "Menu"), [this]() {
-            qDebug() << "Direct connect (MP) selected!";
-            // Open the dialog
-            DirectConnectDialog dialog(this);
-            if (dialog.exec() == QDialog::Accepted) {
-                startGame(Game::StartType::DIRECT_CONNECT, dialog.getIp(), dialog.getPort());
-            }
-        });
-    }
+    menu->addAction(tr("Direct connect (MP)", "Menu"), [this]() {
+        qDebug() << "Direct connect (MP) selected!";
+        // Open the dialog
+        DirectConnectDialog dialog(this);
+        if (dialog.exec() == QDialog::Accepted) {
+            startGame(Game::StartType::DIRECT_CONNECT, dialog.getIp(), dialog.getPort());
+        }
+    });
 
     // Scan local network (MP)
-    menu->addAction(tr("Scan local network (MP)", "Menu"), [this]() {
+    /*menu->addAction(tr("Scan local network (MP)", "Menu"), [this]() {
         qDebug() << "Scan local network (MP) selected!";
         // Open the scan dialog
         ScanNetworkDialog dialog(this);
@@ -408,15 +406,15 @@ void LauncherMainWindow::setupPlayExtraMenu()
             // Start the game
             startGame(Game::StartType::DIRECT_CONNECT, dialog.getIp(), dialog.getPort());
         }
-    });
+    });*/
 
-    // Scan local network (MP)
-    menu->addAction(tr("Test internet lobby (MP)", "Menu"), [this]() {
+    // Test internet lobby (MP)
+    /*menu->addAction(tr("Test internet lobby (MP)", "Menu"), [this]() {
         qDebug() << "Test internet lobby (MP) selected!";
         // Open the dialog
         EnetServerTestDialog dialog(this);
         dialog.exec();
-    });
+    });*/
 
     // Run packetsave action
     menu->addAction(tr("Run packetfile", "Menu"), [this]() {
@@ -996,6 +994,16 @@ void LauncherMainWindow::checkForFileRemoval()
 
             } else {
                 qDebug() << "No files to remove found.";
+
+                // Remove the 'install.tmp' file if it exists
+                QFile installTmpFile(QCoreApplication::applicationDirPath() + "/keeperfx-launcher-qt.install.tmp");
+                if(installTmpFile.exists()) {
+                    if(installTmpFile.remove() == false) {
+                        qWarning() << "Failed to remove 'install.tmp' file";
+                    } else {
+                        qDebug() << "install.tmp file removed";
+                    }
+                }
             }
         } else {
             qInfo() << "File-removal file not found:" << fileRemovalFilename;
@@ -1014,8 +1022,26 @@ void LauncherMainWindow::onFilesToRemoveFound(QStringList filesToRemove)
         return;
     }
 
-    // Check if user wants to remove leftover files automatically (silently)
-    if(Settings::getLauncherSetting("AUTO_REMOVE_LEFTOVER_FILES") == true){
+    // Check if we need to remove leftover files automatically (silently)
+    // - If the user has configured the files to be automatically removed
+    // - If the '--install' param is present (user is still installing KeeperFX)
+    // - If the 'install.tmp' file is present (user is still installing KeeperFX)
+    QFile installTmpFile(QCoreApplication::applicationDirPath() + "/keeperfx-launcher-qt.install.tmp");
+    if(
+        Settings::getLauncherSetting("AUTO_REMOVE_LEFTOVER_FILES") == true
+        || LauncherOptions::isSet("install")
+        || installTmpFile.exists()
+    ){
+        // Remove the 'install.tmp' file if it exists
+        if(installTmpFile.exists()) {
+            if(installTmpFile.remove() == false) {
+                qWarning() << "Failed to remove 'install.tmp' file";
+            } else {
+                qDebug() << "install.tmp file removed";
+            }
+        }
+
+        // Log that we're removing files without interaction
         qDebug() << "Removing leftover files automatically without user interaction";
 
         // Loop through the list of files
@@ -1271,9 +1297,12 @@ void LauncherMainWindow::verifyBinaryCertificates()
 
 void LauncherMainWindow::startGame(Game::StartType startType, QVariant data1, QVariant data2, QVariant data3)
 {
-    // Disable the play buttons
+    // Disable buttons that should not be avilable when the game is running
     ui->playButton->setDisabled(true);
     ui->playExtraButton->setDisabled(true);
+    ui->settingsButton->setDisabled(true);
+    ui->checkForUpdatesButton->setDisabled(true);
+    ui->versionLabel->setDisabled(true);
 
     // Start the game
     bool startStatus = game->start(startType, data1, data2, data3);
@@ -1285,6 +1314,8 @@ void LauncherMainWindow::startGame(Game::StartType startType, QVariant data1, QV
         // Refresh the installation-aware and logfile buttons
         refreshInstallationAwareButtons();
         refreshLogfileButton();
+        ui->checkForUpdatesButton->setDisabled(false);
+        ui->versionLabel->setDisabled(false);
 
         // Get the error
         QString errorString = game->getErrorString();
@@ -1314,6 +1345,9 @@ void LauncherMainWindow::onGameEnded(int exitCode, QProcess::ExitStatus exitStat
     refreshInstallationAwareButtons();
     refreshLogfileButton();
     refreshSaveFilesMenu();
+
+    ui->checkForUpdatesButton->setDisabled(false);
+    ui->versionLabel->setDisabled(false);
 
     // Not really required but good to occasionally refresh
     refreshCampaignMenu();

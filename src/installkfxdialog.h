@@ -67,4 +67,6 @@ private:
     bool moveTempFilesToAppDir(QDir sourceDir);
 
     void completeInstall();
+
+    void loadCdnListAndSelectSuggested();
 };

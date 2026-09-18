@@ -17,6 +17,7 @@
 #include "translator.h"
 #include "extractor.h"
 #include "helper.h"
+#include "cdn.h"
 
 InstallKfxDialog::InstallKfxDialog(QWidget *parent)
     : QDialog(parent)
@@ -69,11 +70,29 @@ InstallKfxDialog::~InstallKfxDialog()
     delete ui;
 }
 
+void InstallKfxDialog::loadCdnListAndSelectSuggested()
+{
+    emit appendLog("Fetching CDN info...");
+
+    // Refresh the CDN endpoint cache
+    CDN::refreshEndpointCache();
+
+    // Set suggested CDN as our endpoint
+    CDN::setActiveEndpoint(CDN::getSuggestedCdn());
+
+    // Show it to the user
+    // e.g., "CDN: KeeperFX.net (Germany)", "CDN: https://127.0.0.1:5500", or a custom URL.
+    emit appendLog(QString("CDN: %1").arg(CDN::getCurrentEndpointDisplayName()));
+}
+
 void InstallKfxDialog::on_installButton_clicked()
 {
     // Change GUI
     ui->installButton->setDisabled(true);
     ui->progressBar->setTextVisible(true);
+
+    // Set up the CDN cache and select the suggested endpoint
+    this->loadCdnListAndSelectSuggested();
 
     // Tell user we start the installation
     emit appendLog("Installation started");
@@ -566,6 +585,9 @@ void InstallKfxDialog::completeInstall()
     emit appendLog("Setting game language to system language");
     Settings::autoSetGameLanguageToLocaleLanguage();
 
+    // Store the selected CDN
+    CDN::saveActiveEndpoint();
+
     // Set max fps
     if (KfxVersion::hasFunctionality("max_frames_per_second") == true) {
         emit appendLog("Setting max FPS to screen refresh rate");
@@ -578,6 +600,16 @@ void InstallKfxDialog::completeInstall()
             }
         }
     }
+
+    // Drop a file that allows us to know that we just installed the game.
+    // We need this because the automatic file removal might want to remove some files and
+    // we don't want to bug the user right after installing.
+    QString installTmpFilePath = QCoreApplication::applicationDirPath() + "/keeperfx-launcher-qt.install.tmp";
+    QFile installTmpFile(installTmpFilePath);
+    if (installTmpFile.open(QIODevice::WriteOnly)) {
+        qDebug() << "Written install.tmp file:" << installTmpFilePath;
+    }
+    installTmpFile.close();
 
     // Done!
     emit appendLog("Done!");
