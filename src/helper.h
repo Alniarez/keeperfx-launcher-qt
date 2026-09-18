@@ -9,6 +9,7 @@
 #include <QDirIterator>
 #include <QUuid>
 #include <QComboBox>
+#include <QWheelEvent>
 
 #ifdef Q_OS_WINDOWS
     #include <windows.h>
@@ -261,23 +262,42 @@ public:
 
         comboBox->setFocusPolicy(Qt::StrongFocus);
 
-        // We define the QObject locally inside the function.
-        // This acts just like a lambda and doesn't pollute your header file.
         class ScrollBlocker : public QObject {
-                protected:
+            protected:
             bool eventFilter(QObject *obj, QEvent *event) override {
                 if (event->type() == QEvent::Wheel) {
                     QComboBox* combo = qobject_cast<QComboBox*>(obj);
+
+                    // If combobox isn't focused, we block it from scrolling
                     if (combo && !combo->hasFocus()) {
-                        return true; // Block the wheel event
+                        QWheelEvent* wheelEvent = static_cast<QWheelEvent*>(event);
+
+                        // Manually bubble the wheel event up the widget tree.
+                        // This allows the QScrollArea to see the scroll wheel action.
+                        QWidget* parent = combo->parentWidget();
+                        while (parent) {
+                            wheelEvent->setAccepted(false); // Reset event state
+
+                            // Send event to the parent
+                            QCoreApplication::sendEvent(parent, wheelEvent);
+
+                            // If a parent (like a ScrollArea) accepts and handles it, stop bubbling
+                            if (wheelEvent->isAccepted()) {
+                                break;
+                            }
+
+                            // Move up to the next parent
+                            parent = parent->parentWidget();
+                        }
+
+                        // Return true to stop the QComboBox itself from changing values
+                        return true;
                     }
                 }
                 return QObject::eventFilter(obj, event);
             }
         };
 
-        // 'static' ensures the blocker is only created once in memory
-        // and reused for every combobox you pass to this function.
         static ScrollBlocker filter;
         comboBox->installEventFilter(&filter);
     }
