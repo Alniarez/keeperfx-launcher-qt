@@ -23,11 +23,6 @@ SettingsDialog::SettingsDialog(QWidget *parent)
 {
     ui->setupUi(this);
 
-    // Disable resizing and remove maximize button
-    /*setFixedSize(size());
-    setWindowFlag(Qt::WindowMaximizeButtonHint, false);
-    setWindowFlag(Qt::MSWindowsFixedSizeDialogHint);*/
-
     // Hide 'Multiplayer' tab until a future update requires it
     ui->tabWidget->tabBar()->setTabVisible(4, false);
 
@@ -1199,16 +1194,24 @@ void SettingsDialog::cancel()
 
 void SettingsDialog::setupDisplayMonitorDropdown()
 {
+    QWidget *parentWidget = ui->comboBoxDisplayMonitor->parentWidget();
+
     // Get some details of the placeholder combo box and delete it
-    QComboBox *oldComboBox = ui->comboBoxDisplayMonitor;
+    /*QComboBox *oldComboBox = ui->comboBoxDisplayMonitor;
     QRect geometry = oldComboBox->geometry();
     QWidget *parentWidget = oldComboBox->parentWidget();
-    delete ui->comboBoxDisplayMonitor;
+    delete ui->comboBoxDisplayMonitor;*/
 
     // Create the combobox that handles the popup signal
     // This signal is used to show and hide monitor display numers
     popupComboBoxMonitorDisplay = new PopupSignalComboBox(parentWidget);
-    popupComboBoxMonitorDisplay->setGeometry(geometry);
+
+    QLayout *layout = parentWidget->layout();
+    if (layout) {
+        layout->replaceWidget(ui->comboBoxDisplayMonitor, popupComboBoxMonitorDisplay);
+    }
+
+    delete ui->comboBoxDisplayMonitor;
 
     // Get the list of available screens
     QList<QScreen *> screens = QGuiApplication::screens();
@@ -1553,9 +1556,9 @@ void SettingsDialog::resizeEvent(QResizeEvent *event) {
     // Dynamically find all widgets named starting with "responsive_"
     QList<QWidget*> responsiveContainers = this->findChildren<QWidget*>(QRegularExpression("^responsive_.*"));
 
-    // Loop torugh all found containers
-    // TODO: fix this loop:
-    for (QWidget* container : responsiveContainers) {
+    // Loop trough all found containers
+    for (qsizetype i = 0; i < responsiveContainers.size(); ++i) {
+        QWidget* container = responsiveContainers.at(i);
         // Only attempt to switch if the container has a layout assigned to it
         if (container->layout()) {
             switchContainerLayout(container, useHorizontal);
