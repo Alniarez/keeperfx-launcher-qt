@@ -474,11 +474,6 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     } else {
         ui->labelLauncherTranslators->setText(""); // Hide
     }
-
-    // Fake a resize event to trigger the initial layout update
-    QResizeEvent *fakeResizeEvent = new QResizeEvent(size(), size());
-    resizeEvent(fakeResizeEvent);
-    delete fakeResizeEvent;
 }
 
 SettingsDialog::~SettingsDialog()
