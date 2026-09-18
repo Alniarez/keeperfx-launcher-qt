@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-04 15:20+0200\n"
-"PO-Revision-Date: 2026-06-04 16:11+0000\n"
+"POT-Creation-Date: 2026-09-18 13:25+0200\n"
+"PO-Revision-Date: 2026-09-18 13:36+0200\n"
 "Last-Translator: Yani <yani@keeperfx.net>\n"
 "Language-Team: Dutch <http://translate.keeperfx.net/projects/keeperfx/"
 "launcher/nl/>\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2026.6.1\n"
+"X-Generator: Poedit 3.9\n"
 
 #: Qt default
 msgid "OK"
@@ -113,14 +113,6 @@ msgstr "&Opslaan"
 #: Qt default
 msgid "Restore Defaults"
 msgstr "Standaardinstellingen herstellen"
-
-msgctxt "CDN|Download Server"
-msgid "KeeperFX.net (Default, Germany)"
-msgstr "KeeperFX.net (Standaard, Duitsland)"
-
-msgctxt "CDN|Download Server"
-msgid "Cloudflare CDN (Worldwide)"
-msgstr "Cloudflare CDN (Wereldwijd)"
 
 msgctxt "CopyDkFilesDialog|Window Title"
 msgid "Copy DK Files"
@@ -886,14 +878,6 @@ msgid "Direct connect (MP)"
 msgstr "Direct verbinden (MP)"
 
 msgctxt "LauncherMainWindow|Menu"
-msgid "Scan local network (MP)"
-msgstr "Lokaal netwerk scannen (MP)"
-
-msgctxt "LauncherMainWindow|Menu"
-msgid "Test internet lobby (MP)"
-msgstr "Internetlobby testen (MP)"
-
-msgctxt "LauncherMainWindow|Menu"
 msgid "Run packetfile"
 msgstr "Packetfile starten"
 
@@ -1111,6 +1095,14 @@ msgctxt "SettingsDialog|Dropdown Title Label"
 msgid "Game language"
 msgstr "Spel taal"
 
+msgctxt "SettingsDialog|Dropdown Title Label"
+msgid "Screenshot type"
+msgstr "Screenshot type"
+
+msgctxt "SettingsDialog|Checkbox Toggle"
+msgid "Display splash screens"
+msgstr "Splashschermen tonen"
+
 msgctxt "SettingsDialog|Checkbox Toggle"
 msgid "Display Intro"
 msgstr "Intro tonen"
@@ -1120,12 +1112,24 @@ msgid "Enable Cheats"
 msgstr "Cheats inschakelen"
 
 msgctxt "SettingsDialog|Checkbox Toggle"
+msgid "Automatically enable imprison"
+msgstr "Gevangennemen automatisch inschakelen"
+
+msgctxt "SettingsDialog|Checkbox Toggle"
+msgid "Automatically enable flee"
+msgstr "Vluchten automatisch inschakelen"
+
+msgctxt "SettingsDialog|Checkbox Toggle"
 msgid "Enable Censorship"
 msgstr "Censuur inschakelen"
 
-msgctxt "SettingsDialog|Dropdown Title Label"
-msgid "Screenshot type"
-msgstr "Screenshot type"
+msgctxt "SettingsDialog|Textinput Title Label"
+msgid "Command character"
+msgstr "Commando karakter"
+
+msgctxt "SettingsDialog|Textinput Title Label"
+msgid "Packetsave filename"
+msgstr "Packetsave bestandsnaam"
 
 msgctxt "SettingsDialog|Textinput Title Label"
 msgid ""
@@ -1136,24 +1140,16 @@ msgstr ""
 "(standaard = 20)"
 
 msgctxt "SettingsDialog|Textinput Title Label"
-msgid "Command character"
-msgstr "Commando karakter"
-
-msgctxt "SettingsDialog|Checkbox Toggle"
-msgid "Display splash screens"
-msgstr "Splashschermen tonen"
-
-msgctxt "SettingsDialog|Checkbox Toggle"
-msgid "Enable delta time"
-msgstr "Deltatijd inschakelen"
+msgid "Game launch options"
+msgstr "Spel startopties"
 
 msgctxt "SettingsDialog|Checkbox Toggle"
 msgid "Freeze game when not focused"
 msgstr "Spel bevriezen bij verlies van focus"
 
-msgctxt "SettingsDialog|Textinput Title Label"
-msgid "Packetsave filename"
-msgstr "Packetsave bestandsnaam"
+msgctxt "SettingsDialog|Checkbox Toggle"
+msgid "Enable delta time"
+msgstr "Deltatijd inschakelen"
 
 msgctxt "SettingsDialog|Checkbox Toggle"
 msgid "Enable Packetsave"
@@ -1163,42 +1159,9 @@ msgctxt "SettingsDialog|Checkbox Toggle"
 msgid "Exit on LUA error"
 msgstr "Afsluiten bij LUA-fout"
 
-msgctxt "SettingsDialog|Checkbox Toggle"
-msgid "Automatically enable flee"
-msgstr "Vluchten automatisch inschakelen"
-
-msgctxt "SettingsDialog|Checkbox Toggle"
-msgid "Automatically enable imprison"
-msgstr "Gevangennemen automatisch inschakelen"
-
-msgctxt "SettingsDialog|Textinput Title Label"
-msgid "Game launch options"
-msgstr ""
-
 msgctxt "SettingsDialog|Tab Title"
 msgid "Graphics"
 msgstr "Beeld"
-
-msgctxt "SettingsDialog|Checkbox Toggle"
-msgid "Smoothen edges"
-msgstr "Randen verzachten"
-
-msgctxt "SettingsDialog|Dropdown Title Label"
-msgid "Resolution"
-msgstr "Resolutie"
-
-msgctxt "SettingsDialog|Dropdown Title Label"
-msgid "Display mode"
-msgstr "Beeldmodus"
-
-msgctxt "SettingsDialog|Dropdown Title Label"
-msgid "Display monitor"
-msgstr "Beeldscherm"
-
-#. Should be kept very short
-msgctxt "SettingsDialog|Dropdown Title Label"
-msgid "View 1"
-msgstr "Beeld 1"
 
 #. Should be kept very short
 msgctxt "SettingsDialog|Dropdown Title Label"
@@ -1207,8 +1170,36 @@ msgstr "Beeld 2"
 
 #. Should be kept very short
 msgctxt "SettingsDialog|Dropdown Title Label"
+msgid "View 1"
+msgstr "Beeld 1"
+
+msgctxt "SettingsDialog|Dropdown Title Label"
+msgid "Display mode"
+msgstr "Beeldmodus"
+
+#. Should be kept very short
+msgctxt "SettingsDialog|Dropdown Title Label"
 msgid "View 3"
 msgstr "Beeld 3"
+
+msgctxt "SettingsDialog|Dropdown Title Label"
+msgid "Resolution"
+msgstr "Resolutie"
+
+#. Should be kept very short
+msgctxt "SettingsDialog|Dropdown Title Label"
+msgid "Menu"
+msgstr "Menu"
+
+#. Should be kept very short
+msgctxt "SettingsDialog|Dropdown Title Label"
+msgid "Movies"
+msgstr "Videos"
+
+#. Should be kept very short
+msgctxt "SettingsDialog|Dropdown Title Label"
+msgid "Failsafe"
+msgstr "Failsafe"
 
 #. This is shown under the views configuration
 msgctxt "SettingsDialog|Information Label"
@@ -1218,8 +1209,28 @@ msgstr ""
 "<i>Schakel tussen weergaven in het spel met <strong>Alt + R</strong></i>"
 
 msgctxt "SettingsDialog|Dropdown Title Label"
+msgid "Display monitor"
+msgstr "Beeldscherm"
+
+msgctxt "SettingsDialog|Textinput Title Label"
+msgid "Max. FPS (0 = unlimited)"
+msgstr "Max. FPS (0 = ongelimiteerd)"
+
+msgctxt "SettingsDialog|Dropdown Title Label"
 msgid "Resize Movies"
 msgstr "Videoformaat"
+
+msgctxt "SettingsDialog|Checkbox Toggle"
+msgid "Smoothen edges"
+msgstr "Randen verzachten"
+
+msgctxt "SettingsDialog|Checkbox Toggle"
+msgid "Automatically determine max. FPS"
+msgstr "Max. FPS automatisch bepalen"
+
+msgctxt "SettingsDialog|"
+msgid "Rendering Backend"
+msgstr "Rendermethode"
 
 msgctxt "SettingsDialog|Textinput Title Label"
 msgid "Creature flower size (px)"
@@ -1232,25 +1243,6 @@ msgstr "Hand grootte %"
 msgctxt "SettingsDialog|Textinput Title Label"
 msgid "Select box line size %"
 msgstr "Lijngrootte selecteervak %"
-
-#. Should be kept very short
-msgctxt "SettingsDialog|Dropdown Title Label"
-msgid "Menu"
-msgstr "Menu"
-
-#. Should be kept very short
-msgctxt "SettingsDialog|Dropdown Title Label"
-msgid "Failsafe"
-msgstr "Failsafe"
-
-#. Should be kept very short
-msgctxt "SettingsDialog|Dropdown Title Label"
-msgid "Movies"
-msgstr "Videos"
-
-msgctxt "SettingsDialog|Textinput Title Label"
-msgid "Max. FPS (0 = unlimited)"
-msgstr "Max. FPS (0 = ongelimiteerd)"
 
 msgctxt "SettingsDialog|Textinput Title Label"
 msgid ""
@@ -1268,29 +1260,25 @@ msgstr ""
 "Neutrale flitsfrequentie\n"
 "(standaard = 1)"
 
-msgctxt "SettingsDialog|Checkbox Toggle"
-msgid "Automatically determine max. FPS"
-msgstr "Max. FPS automatisch bepalen"
-
 msgctxt "SettingsDialog|Tab Title"
 msgid "Sound"
 msgstr "Geluid"
 
 msgctxt "SettingsDialog|Checkbox Toggle"
-msgid "Enable sound"
-msgstr "Geluid inschakelen"
-
-msgctxt "SettingsDialog|Checkbox Toggle"
-msgid "Use CD music instead of local files"
-msgstr "Gebruik CD-muziek in plaats van lokale bestanden"
+msgid "Mute audio when game is not focused"
+msgstr "Geluid uitschakelen bij verlies van focus"
 
 msgctxt "SettingsDialog|Checkbox Toggle"
 msgid "Pause music when game is paused"
 msgstr "Muziek pauzeren wanneer het spel gepauzeerd is"
 
 msgctxt "SettingsDialog|Checkbox Toggle"
-msgid "Enable atmospheric sounds"
-msgstr "Sfeergeluiden inschakelen"
+msgid "Use CD music instead of local files"
+msgstr "Gebruik CD-muziek in plaats van lokale bestanden"
+
+msgctxt "SettingsDialog|Checkbox Toggle"
+msgid "Enable sound"
+msgstr "Geluid inschakelen"
 
 msgctxt "SettingsDialog|Dropdown Title Label"
 msgid "Frequency"
@@ -1301,20 +1289,28 @@ msgid "Volume"
 msgstr "Volume"
 
 msgctxt "SettingsDialog|Checkbox Toggle"
-msgid "Mute audio when game is not focused"
-msgstr "Geluid uitschakelen bij verlies van focus"
+msgid "Enable atmospheric sounds"
+msgstr "Sfeergeluiden inschakelen"
 
 msgctxt "SettingsDialog|Tab Title"
 msgid "Input"
 msgstr "Invoer"
 
-msgctxt "SettingsDialog|Checkbox Toggle"
-msgid "Lock cursor in possession"
-msgstr "Cursor vergrendelen in wezenbeheersing"
+msgctxt "SettingsDialog|Slider Title Label"
+msgid "Mouse sensitivity"
+msgstr "Muisgevoeligheid"
+
+msgctxt "SettingsDialog|Dropdown Title Label"
+msgid "Zoom towards cursor"
+msgstr "Inzoomen op muisaanwijzer"
+
+msgctxt "SettingsDialog|Dropdown Title Label"
+msgid "Rotate around cursor"
+msgstr "Draaien rond muisaanwijzer"
 
 msgctxt "SettingsDialog|Checkbox Toggle"
-msgid "Unlock cursor when game is paused"
-msgstr "Cursor ontgrendelen wanneer het spel gepauzeerd is"
+msgid "Raw mouse input"
+msgstr "Ruwe muisinvoer"
 
 #. "Alternative Input"
 msgctxt "SettingsDialog|Checkbox Toggle"
@@ -1322,16 +1318,16 @@ msgid "Unlock cursor from game window"
 msgstr "Cursor ontgrendelen van spelvenster"
 
 msgctxt "SettingsDialog|Checkbox Toggle"
-msgid "Screen edge camera panning"
-msgstr "Schermrand camerabeweging"
-
-msgctxt "SettingsDialog|Slider Title Label"
-msgid "Mouse sensitivity"
-msgstr "Muisgevoeligheid"
+msgid "Unlock cursor when game is paused"
+msgstr "Cursor ontgrendelen wanneer het spel gepauzeerd is"
 
 msgctxt "SettingsDialog|Checkbox Toggle"
-msgid "Raw mouse input"
-msgstr "Ruwe muisinvoer"
+msgid "Lock cursor in possession"
+msgstr "Cursor vergrendelen in wezenbeheersing"
+
+msgctxt "SettingsDialog|Checkbox Toggle"
+msgid "Screen edge camera panning"
+msgstr "Schermrand camerabeweging"
 
 msgctxt "SettingsDialog|Dropdown Title Label"
 msgid "Default tag mode"
@@ -1353,45 +1349,33 @@ msgctxt "SettingsDialog|Tab Title"
 msgid "Launcher"
 msgstr "Launcher"
 
-msgctxt "SettingsDialog|Checkbox Toggle"
-msgid "Automatically check for KeeperFX updates"
-msgstr "Controleer automatisch op KeeperFX-updates"
-
-msgctxt "SettingsDialog|Checkbox Toggle"
-msgid "Enable crash reporting"
-msgstr "Crashrapportage inschakelen"
+msgctxt "SettingsDialog|Dropdown Title Label"
+msgid "Launcher language"
+msgstr "Launcher taal"
 
 msgctxt "SettingsDialog|Dropdown Title Label"
-msgid "KeeperFX Release Channel"
-msgstr "KeeperFX-releasekanaal"
+msgid "Play button theme"
+msgstr "Speel knop thema"
 
 msgctxt "SettingsDialog|Checkbox Toggle"
 msgid "Enable website integration"
 msgstr "Website-integratie inschakelen"
 
 msgctxt "SettingsDialog|Checkbox Toggle"
+msgid "Enable crash reporting"
+msgstr "Crashrapportage inschakelen"
+
+msgctxt "SettingsDialog|Checkbox Toggle"
 msgid "Open on same screen as game"
 msgstr "Openen op hetzelfde scherm als het spel"
 
-msgctxt "SettingsDialog|Dropdown Title Label"
-msgid "Launcher language"
-msgstr "Launcher taal"
-
 msgctxt "SettingsDialog|Checkbox Toggle"
-msgid "Update automatically"
-msgstr "Automatisch updaten"
-
-msgctxt "SettingsDialog|Checkbox Toggle"
-msgid "Backup savefiles during update"
-msgstr "Backup maken van savegames tijdens update"
+msgid "Show directory name in window title"
+msgstr "Toon folder naam in venster titel"
 
 msgctxt "SettingsDialog|Dropdown Title Label"
-msgid "Play button theme"
-msgstr "Speel knop thema"
-
-msgctxt "SettingsDialog|Button"
-msgid "Show launcher command line options"
-msgstr "Launcher-opstartopties weergeven"
+msgid "KeeperFX Release Channel"
+msgstr "KeeperFX-releasekanaal"
 
 msgctxt "SettingsDialog|Textinput Title Label"
 msgid ""
@@ -1401,17 +1385,29 @@ msgstr ""
 "Updatecontrole-interval in dagen\n"
 "(0 = altijd controleren)"
 
+msgctxt "SettingsDialog|Dropdown Title Label"
+msgid "Download Server"
+msgstr "Download Server"
+
+msgctxt "SettingsDialog|Button"
+msgid "Show launcher command line options"
+msgstr "Launcher-opstartopties weergeven"
+
 msgctxt "SettingsDialog|Checkbox Toggle"
-msgid "Show directory name in window title"
-msgstr "Toon folder naam in venster titel"
+msgid "Automatically check for KeeperFX updates"
+msgstr "Controleer automatisch op KeeperFX-updates"
+
+msgctxt "SettingsDialog|Checkbox Toggle"
+msgid "Update automatically"
+msgstr "Automatisch updaten"
+
+msgctxt "SettingsDialog|Checkbox Toggle"
+msgid "Backup savefiles during update"
+msgstr "Backup maken van savegames tijdens update"
 
 msgctxt "SettingsDialog|Checkbox Toggle"
 msgid "Automatically remove leftover files"
 msgstr "Overgebleven bestanden automatisch verwijderen"
-
-msgctxt "SettingsDialog|Dropdown Title Label"
-msgid "Download Server"
-msgstr "Download Server"
 
 msgctxt "SettingsDialog|Tab Title"
 msgid "API"
@@ -1432,6 +1428,42 @@ msgstr "Info"
 msgctxt "SettingsDialog|Dialog Button"
 msgid "Open config file"
 msgstr "Configuratiebestand openen"
+
+msgctxt "SettingsDialog|Renderer Dropdown"
+msgid "Software"
+msgstr "Software"
+
+msgctxt "SettingsDialog|Renderer Dropdown"
+msgid "OpenGL"
+msgstr "OpenGL"
+
+msgctxt "SettingsDialog|Zoom To Cursor Dropdown"
+msgid "Never"
+msgstr "Nooit"
+
+msgctxt "SettingsDialog|Zoom To Cursor Dropdown"
+msgid "Mousewheel only"
+msgstr "Alleen muiswiel"
+
+msgctxt "SettingsDialog|Zoom To Cursor Dropdown"
+msgid "Mousewheel & Keyboard"
+msgstr "Muiswiel & Toetsenbord"
+
+msgctxt "SettingsDialog|Rotate Around Cursor Dropdown"
+msgid "Never"
+msgstr "Nooit"
+
+msgctxt "SettingsDialog|Rotate Around Cursor Dropdown"
+msgid "Always"
+msgstr "Altijd"
+
+msgctxt "SettingsDialog|Rotate Around Cursor Dropdown"
+msgid "Movement Keys Only (While holding Ctrl)"
+msgstr "Alleen bewegingsknoppen (bij indrukken van Ctrl)"
+
+msgctxt "SettingsDialog|Rotate Around Cursor Dropdown"
+msgid "Rotation Keys Only"
+msgstr "Alleen draaiknoppen"
 
 msgctxt "SettingsDialog|Default Tag Mode Dropdown"
 msgid "Single"
@@ -1643,7 +1675,7 @@ msgstr ""
 
 msgctxt "UpdateDialog|Failure Message"
 msgid "You might have to start the launcher with administrator rights."
-msgstr ""
+msgstr "Je moet de launcher mogelijk als administrator starten."
 
 msgctxt "UpdateDialog|Failure Message"
 msgid ""
@@ -1654,6 +1686,13 @@ msgid ""
 "\n"
 "If the issue persists, restart your PC and retry the update."
 msgstr ""
+"Het lijkt erop dat KeeperFX momenteel draait. De updater kan de "
+"spelbestanden niet vervangen zolang het programma openstaat.\n"
+"\n"
+"Sluit KeeperFX af voordat je het opnieuw probeert.\n"
+"\n"
+"Als het probleem blijft bestaan, start uw pc opnieuw op en probeer de update "
+"opnieuw."
 
 msgctxt "UpdateDialog|Failure Message"
 msgid ""
@@ -1663,6 +1702,12 @@ msgid ""
 "\n"
 "If the issue persists, restart your PC and retry the update."
 msgstr ""
+"Het lijkt erop dat de legacy KeeperFX-launcher momenteel draait.\n"
+"\n"
+"Sluit deze af voordat je het opnieuw probeert.\n"
+"\n"
+"Als het probleem blijft bestaan, start uw pc opnieuw op en probeer de update "
+"opnieuw."
 
 msgctxt "UpdateDialog|Failure Message"
 msgid ""
@@ -1769,6 +1814,22 @@ msgid ""
 msgstr ""
 "Kan de KeeperFX-versie niet bepalen. Dit is vereist om een crashrapport te "
 "kunnen indienen."
+
+#~ msgctxt "CDN|Download Server"
+#~ msgid "KeeperFX.net (Default, Germany)"
+#~ msgstr "KeeperFX.net (Standaard, Duitsland)"
+
+#~ msgctxt "CDN|Download Server"
+#~ msgid "Cloudflare CDN (Worldwide)"
+#~ msgstr "Cloudflare CDN (Wereldwijd)"
+
+#~ msgctxt "LauncherMainWindow|Menu"
+#~ msgid "Scan local network (MP)"
+#~ msgstr "Lokaal netwerk scannen (MP)"
+
+#~ msgctxt "LauncherMainWindow|Menu"
+#~ msgid "Test internet lobby (MP)"
+#~ msgstr "Internetlobby testen (MP)"
 
 #~ msgctxt "SettingsDialog|Dropdown Title Label"
 #~ msgid "Release"
