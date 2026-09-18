@@ -59,7 +59,7 @@ height: 35px;
             <x>0</x>
             <y>0</y>
             <width>856</width>
-            <height>492</height>
+            <height>522</height>
            </rect>
           </property>
           <layout class="QHBoxLayout" name="horizontalLayout_5" stretch="1,1">
@@ -313,8 +313,8 @@ height: 35px;
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>887</width>
-            <height>548</height>
+            <width>856</width>
+            <height>522</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -539,49 +539,59 @@ height: 35px;
                  <property name="bottomMargin">
                   <number>16</number>
                  </property>
-                 <item row="0" column="0">
+                 <item row="1" column="0">
                   <widget class="QLabel" name="labelDisplayMonitor">
                    <property name="text">
                     <string comment="Dropdown Title Label">Display monitor</string>
                    </property>
                   </widget>
                  </item>
-                 <item row="0" column="1">
+                 <item row="1" column="1">
                   <widget class="QComboBox" name="comboBoxDisplayMonitor"/>
                  </item>
-                 <item row="1" column="0">
+                 <item row="2" column="0">
                   <widget class="QLabel" name="labelMaxFps">
                    <property name="text">
                     <string comment="Textinput Title Label">Max. FPS (0 = unlimited)</string>
                    </property>
                   </widget>
                  </item>
-                 <item row="1" column="1">
+                 <item row="2" column="1">
                   <widget class="QLineEdit" name="lineEditMaxFps"/>
                  </item>
-                 <item row="3" column="0">
+                 <item row="4" column="0">
                   <widget class="QLabel" name="labelResizeMovies">
                    <property name="text">
                     <string comment="Dropdown Title Label">Resize Movies</string>
                    </property>
                   </widget>
                  </item>
-                 <item row="3" column="1">
+                 <item row="4" column="1">
                   <widget class="QComboBox" name="comboBoxResizeMovies"/>
                  </item>
-                 <item row="4" column="0" colspan="2">
+                 <item row="5" column="0" colspan="2">
                   <widget class="QCheckBox" name="checkBoxSmoothenVideo">
                    <property name="text">
                     <string comment="Checkbox Toggle">Smoothen edges</string>
                    </property>
                   </widget>
                  </item>
-                 <item row="2" column="0" colspan="2">
+                 <item row="3" column="0" colspan="2">
                   <widget class="QCheckBox" name="checkBoxAutoDetermineMaxFps">
                    <property name="text">
                     <string comment="Checkbox Toggle">Automatically determine max. FPS</string>
                    </property>
                   </widget>
+                 </item>
+                 <item row="0" column="0">
+                  <widget class="QLabel" name="labelRenderer">
+                   <property name="text">
+                    <string>Rendering Backend</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="1">
+                  <widget class="QComboBox" name="comboBoxRenderer"/>
                  </item>
                 </layout>
                </widget>
@@ -720,8 +730,8 @@ height: 35px;
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>887</width>
-            <height>548</height>
+            <width>856</width>
+            <height>522</height>
            </rect>
           </property>
           <property name="sizePolicy">
@@ -902,8 +912,8 @@ height: 35px;
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>887</width>
-            <height>548</height>
+            <width>856</width>
+            <height>522</height>
            </rect>
           </property>
           <property name="sizePolicy">
@@ -1152,8 +1162,8 @@ height: 35px;
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>887</width>
-            <height>548</height>
+            <width>856</width>
+            <height>522</height>
            </rect>
           </property>
           <property name="sizePolicy">
@@ -1270,8 +1280,8 @@ height: 35px;
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>887</width>
-            <height>548</height>
+            <width>856</width>
+            <height>522</height>
            </rect>
           </property>
           <property name="sizePolicy">
@@ -1524,8 +1534,8 @@ height: 35px;
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>887</width>
-            <height>548</height>
+            <width>856</width>
+            <height>522</height>
            </rect>
           </property>
           <layout class="QHBoxLayout" name="horizontalLayout_3">

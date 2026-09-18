@@ -112,6 +112,15 @@ SettingsDialog::SettingsDialog(QWidget *parent)
         ui->checkBoxAutoDetermineMaxFps->setDisabled(true);
     }
 
+    // Renderer
+    ui->comboBoxRenderer->addItem(tr("Software", "Renderer Dropdown"), "SOFTWARE");
+    if (KfxVersion::hasFunctionality("opengl_renderer") == true) {
+        ui->comboBoxRenderer->addItem(tr("OpenGL", "Renderer Dropdown"), "OPENGL");
+    } else {
+        ui->labelRenderer->setDisabled(true);
+        ui->comboBoxRenderer->setDisabled(true);
+    }
+
     if (KfxVersion::hasFunctionality("gui_and_neutral_blink_speed") == false) {
         ui->labelGuiBlinkRate->setDisabled(true);
         ui->lineEditGuiBlinkRate->setDisabled(true);
@@ -708,6 +717,10 @@ void SettingsDialog::loadSettings()
         ui->lineEditNeutralFlashRate->setText(Settings::getKfxSetting("NEUTRAL_FLASH_RATE").toString());
     }
 
+    if (KfxVersion::hasFunctionality("opengl_renderer") == true) {
+        ui->comboBoxRenderer->setCurrentIndex(ui->comboBoxRenderer->findData(Settings::getKfxSetting("RENDERER").toString()));
+    }
+
     // =========================================================================
     // ================================ SOUND ==================================
     // =========================================================================
@@ -986,6 +999,10 @@ void SettingsDialog::saveSettings()
     if (KfxVersion::hasFunctionality("gui_and_neutral_blink_speed") == true) {
         Settings::setKfxSetting("GUI_BLINK_RATE", ui->lineEditGuiBlinkRate->text());
         Settings::setKfxSetting("NEUTRAL_FLASH_RATE", ui->lineEditNeutralFlashRate->text());
+    }
+
+    if (KfxVersion::hasFunctionality("opengl_renderer") == true) {
+        Settings::setKfxSetting("RENDERER", ui->comboBoxRenderer->currentData().toString());
     }
 
     // =========================================================================
