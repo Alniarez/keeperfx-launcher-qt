@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-04 15:20+0200\n"
+"POT-Creation-Date: 2026-09-18 13:25+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -115,14 +115,6 @@ msgstr ""
 
 #: Qt default
 msgid "Restore Defaults"
-msgstr ""
-
-msgctxt "CDN|Download Server"
-msgid "KeeperFX.net (Default, Germany)"
-msgstr ""
-
-msgctxt "CDN|Download Server"
-msgid "Cloudflare CDN (Worldwide)"
 msgstr ""
 
 msgctxt "CopyDkFilesDialog|Window Title"
@@ -784,14 +776,6 @@ msgid "Direct connect (MP)"
 msgstr ""
 
 msgctxt "LauncherMainWindow|Menu"
-msgid "Scan local network (MP)"
-msgstr ""
-
-msgctxt "LauncherMainWindow|Menu"
-msgid "Test internet lobby (MP)"
-msgstr ""
-
-msgctxt "LauncherMainWindow|Menu"
 msgid "Run packetfile"
 msgstr ""
 
@@ -982,6 +966,14 @@ msgctxt "SettingsDialog|Dropdown Title Label"
 msgid "Game language"
 msgstr ""
 
+msgctxt "SettingsDialog|Dropdown Title Label"
+msgid "Screenshot type"
+msgstr ""
+
+msgctxt "SettingsDialog|Checkbox Toggle"
+msgid "Display splash screens"
+msgstr ""
+
 msgctxt "SettingsDialog|Checkbox Toggle"
 msgid "Display Intro"
 msgstr ""
@@ -991,11 +983,23 @@ msgid "Enable Cheats"
 msgstr ""
 
 msgctxt "SettingsDialog|Checkbox Toggle"
+msgid "Automatically enable imprison"
+msgstr ""
+
+msgctxt "SettingsDialog|Checkbox Toggle"
+msgid "Automatically enable flee"
+msgstr ""
+
+msgctxt "SettingsDialog|Checkbox Toggle"
 msgid "Enable Censorship"
 msgstr ""
 
-msgctxt "SettingsDialog|Dropdown Title Label"
-msgid "Screenshot type"
+msgctxt "SettingsDialog|Textinput Title Label"
+msgid "Command character"
+msgstr ""
+
+msgctxt "SettingsDialog|Textinput Title Label"
+msgid "Packetsave filename"
 msgstr ""
 
 msgctxt "SettingsDialog|Textinput Title Label"
@@ -1005,23 +1009,15 @@ msgid ""
 msgstr ""
 
 msgctxt "SettingsDialog|Textinput Title Label"
-msgid "Command character"
-msgstr ""
-
-msgctxt "SettingsDialog|Checkbox Toggle"
-msgid "Display splash screens"
-msgstr ""
-
-msgctxt "SettingsDialog|Checkbox Toggle"
-msgid "Enable delta time"
+msgid "Game launch options"
 msgstr ""
 
 msgctxt "SettingsDialog|Checkbox Toggle"
 msgid "Freeze game when not focused"
 msgstr ""
 
-msgctxt "SettingsDialog|Textinput Title Label"
-msgid "Packetsave filename"
+msgctxt "SettingsDialog|Checkbox Toggle"
+msgid "Enable delta time"
 msgstr ""
 
 msgctxt "SettingsDialog|Checkbox Toggle"
@@ -1032,41 +1028,8 @@ msgctxt "SettingsDialog|Checkbox Toggle"
 msgid "Exit on LUA error"
 msgstr ""
 
-msgctxt "SettingsDialog|Checkbox Toggle"
-msgid "Automatically enable flee"
-msgstr ""
-
-msgctxt "SettingsDialog|Checkbox Toggle"
-msgid "Automatically enable imprison"
-msgstr ""
-
-msgctxt "SettingsDialog|Textinput Title Label"
-msgid "Game launch options"
-msgstr ""
-
 msgctxt "SettingsDialog|Tab Title"
 msgid "Graphics"
-msgstr ""
-
-msgctxt "SettingsDialog|Checkbox Toggle"
-msgid "Smoothen edges"
-msgstr ""
-
-msgctxt "SettingsDialog|Dropdown Title Label"
-msgid "Resolution"
-msgstr ""
-
-msgctxt "SettingsDialog|Dropdown Title Label"
-msgid "Display mode"
-msgstr ""
-
-msgctxt "SettingsDialog|Dropdown Title Label"
-msgid "Display monitor"
-msgstr ""
-
-#. Should be kept very short
-msgctxt "SettingsDialog|Dropdown Title Label"
-msgid "View 1"
 msgstr ""
 
 #. Should be kept very short
@@ -1076,7 +1039,35 @@ msgstr ""
 
 #. Should be kept very short
 msgctxt "SettingsDialog|Dropdown Title Label"
+msgid "View 1"
+msgstr ""
+
+msgctxt "SettingsDialog|Dropdown Title Label"
+msgid "Display mode"
+msgstr ""
+
+#. Should be kept very short
+msgctxt "SettingsDialog|Dropdown Title Label"
 msgid "View 3"
+msgstr ""
+
+msgctxt "SettingsDialog|Dropdown Title Label"
+msgid "Resolution"
+msgstr ""
+
+#. Should be kept very short
+msgctxt "SettingsDialog|Dropdown Title Label"
+msgid "Menu"
+msgstr ""
+
+#. Should be kept very short
+msgctxt "SettingsDialog|Dropdown Title Label"
+msgid "Movies"
+msgstr ""
+
+#. Should be kept very short
+msgctxt "SettingsDialog|Dropdown Title Label"
+msgid "Failsafe"
 msgstr ""
 
 #. This is shown under the views configuration
@@ -1086,7 +1077,27 @@ msgid ""
 msgstr ""
 
 msgctxt "SettingsDialog|Dropdown Title Label"
+msgid "Display monitor"
+msgstr ""
+
+msgctxt "SettingsDialog|Textinput Title Label"
+msgid "Max. FPS (0 = unlimited)"
+msgstr ""
+
+msgctxt "SettingsDialog|Dropdown Title Label"
 msgid "Resize Movies"
+msgstr ""
+
+msgctxt "SettingsDialog|Checkbox Toggle"
+msgid "Smoothen edges"
+msgstr ""
+
+msgctxt "SettingsDialog|Checkbox Toggle"
+msgid "Automatically determine max. FPS"
+msgstr ""
+
+msgctxt "SettingsDialog|"
+msgid "Rendering Backend"
 msgstr ""
 
 msgctxt "SettingsDialog|Textinput Title Label"
@@ -1101,25 +1112,6 @@ msgctxt "SettingsDialog|Textinput Title Label"
 msgid "Select box line size %"
 msgstr ""
 
-#. Should be kept very short
-msgctxt "SettingsDialog|Dropdown Title Label"
-msgid "Menu"
-msgstr ""
-
-#. Should be kept very short
-msgctxt "SettingsDialog|Dropdown Title Label"
-msgid "Failsafe"
-msgstr ""
-
-#. Should be kept very short
-msgctxt "SettingsDialog|Dropdown Title Label"
-msgid "Movies"
-msgstr ""
-
-msgctxt "SettingsDialog|Textinput Title Label"
-msgid "Max. FPS (0 = unlimited)"
-msgstr ""
-
 msgctxt "SettingsDialog|Textinput Title Label"
 msgid ""
 "GUI blink rate\n"
@@ -1132,20 +1124,12 @@ msgid ""
 "(default = 1)"
 msgstr ""
 
-msgctxt "SettingsDialog|Checkbox Toggle"
-msgid "Automatically determine max. FPS"
-msgstr ""
-
 msgctxt "SettingsDialog|Tab Title"
 msgid "Sound"
 msgstr ""
 
 msgctxt "SettingsDialog|Checkbox Toggle"
-msgid "Enable sound"
-msgstr ""
-
-msgctxt "SettingsDialog|Checkbox Toggle"
-msgid "Use CD music instead of local files"
+msgid "Mute audio when game is not focused"
 msgstr ""
 
 msgctxt "SettingsDialog|Checkbox Toggle"
@@ -1153,7 +1137,11 @@ msgid "Pause music when game is paused"
 msgstr ""
 
 msgctxt "SettingsDialog|Checkbox Toggle"
-msgid "Enable atmospheric sounds"
+msgid "Use CD music instead of local files"
+msgstr ""
+
+msgctxt "SettingsDialog|Checkbox Toggle"
+msgid "Enable sound"
 msgstr ""
 
 msgctxt "SettingsDialog|Dropdown Title Label"
@@ -1165,19 +1153,27 @@ msgid "Volume"
 msgstr ""
 
 msgctxt "SettingsDialog|Checkbox Toggle"
-msgid "Mute audio when game is not focused"
+msgid "Enable atmospheric sounds"
 msgstr ""
 
 msgctxt "SettingsDialog|Tab Title"
 msgid "Input"
 msgstr ""
 
-msgctxt "SettingsDialog|Checkbox Toggle"
-msgid "Lock cursor in possession"
+msgctxt "SettingsDialog|Slider Title Label"
+msgid "Mouse sensitivity"
+msgstr ""
+
+msgctxt "SettingsDialog|Dropdown Title Label"
+msgid "Zoom towards cursor"
+msgstr ""
+
+msgctxt "SettingsDialog|Dropdown Title Label"
+msgid "Rotate around cursor"
 msgstr ""
 
 msgctxt "SettingsDialog|Checkbox Toggle"
-msgid "Unlock cursor when game is paused"
+msgid "Raw mouse input"
 msgstr ""
 
 #. "Alternative Input"
@@ -1186,15 +1182,15 @@ msgid "Unlock cursor from game window"
 msgstr ""
 
 msgctxt "SettingsDialog|Checkbox Toggle"
-msgid "Screen edge camera panning"
-msgstr ""
-
-msgctxt "SettingsDialog|Slider Title Label"
-msgid "Mouse sensitivity"
+msgid "Unlock cursor when game is paused"
 msgstr ""
 
 msgctxt "SettingsDialog|Checkbox Toggle"
-msgid "Raw mouse input"
+msgid "Lock cursor in possession"
+msgstr ""
+
+msgctxt "SettingsDialog|Checkbox Toggle"
+msgid "Screen edge camera panning"
 msgstr ""
 
 msgctxt "SettingsDialog|Dropdown Title Label"
@@ -1217,16 +1213,12 @@ msgctxt "SettingsDialog|Tab Title"
 msgid "Launcher"
 msgstr ""
 
-msgctxt "SettingsDialog|Checkbox Toggle"
-msgid "Automatically check for KeeperFX updates"
-msgstr ""
-
-msgctxt "SettingsDialog|Checkbox Toggle"
-msgid "Enable crash reporting"
+msgctxt "SettingsDialog|Dropdown Title Label"
+msgid "Launcher language"
 msgstr ""
 
 msgctxt "SettingsDialog|Dropdown Title Label"
-msgid "KeeperFX Release Channel"
+msgid "Play button theme"
 msgstr ""
 
 msgctxt "SettingsDialog|Checkbox Toggle"
@@ -1234,11 +1226,37 @@ msgid "Enable website integration"
 msgstr ""
 
 msgctxt "SettingsDialog|Checkbox Toggle"
+msgid "Enable crash reporting"
+msgstr ""
+
+msgctxt "SettingsDialog|Checkbox Toggle"
 msgid "Open on same screen as game"
 msgstr ""
 
+msgctxt "SettingsDialog|Checkbox Toggle"
+msgid "Show directory name in window title"
+msgstr ""
+
 msgctxt "SettingsDialog|Dropdown Title Label"
-msgid "Launcher language"
+msgid "KeeperFX Release Channel"
+msgstr ""
+
+msgctxt "SettingsDialog|Textinput Title Label"
+msgid ""
+"Update check interval in days\n"
+"(0 = always check)"
+msgstr ""
+
+msgctxt "SettingsDialog|Dropdown Title Label"
+msgid "Download Server"
+msgstr ""
+
+msgctxt "SettingsDialog|Button"
+msgid "Show launcher command line options"
+msgstr ""
+
+msgctxt "SettingsDialog|Checkbox Toggle"
+msgid "Automatically check for KeeperFX updates"
 msgstr ""
 
 msgctxt "SettingsDialog|Checkbox Toggle"
@@ -1249,30 +1267,8 @@ msgctxt "SettingsDialog|Checkbox Toggle"
 msgid "Backup savefiles during update"
 msgstr ""
 
-msgctxt "SettingsDialog|Dropdown Title Label"
-msgid "Play button theme"
-msgstr ""
-
-msgctxt "SettingsDialog|Button"
-msgid "Show launcher command line options"
-msgstr ""
-
-msgctxt "SettingsDialog|Textinput Title Label"
-msgid ""
-"Update check interval in days\n"
-"(0 = always check)"
-msgstr ""
-
-msgctxt "SettingsDialog|Checkbox Toggle"
-msgid "Show directory name in window title"
-msgstr ""
-
 msgctxt "SettingsDialog|Checkbox Toggle"
 msgid "Automatically remove leftover files"
-msgstr ""
-
-msgctxt "SettingsDialog|Dropdown Title Label"
-msgid "Download Server"
 msgstr ""
 
 msgctxt "SettingsDialog|Tab Title"
@@ -1293,6 +1289,42 @@ msgstr ""
 
 msgctxt "SettingsDialog|Dialog Button"
 msgid "Open config file"
+msgstr ""
+
+msgctxt "SettingsDialog|Renderer Dropdown"
+msgid "Software"
+msgstr ""
+
+msgctxt "SettingsDialog|Renderer Dropdown"
+msgid "OpenGL"
+msgstr ""
+
+msgctxt "SettingsDialog|Zoom To Cursor Dropdown"
+msgid "Never"
+msgstr ""
+
+msgctxt "SettingsDialog|Zoom To Cursor Dropdown"
+msgid "Mousewheel only"
+msgstr ""
+
+msgctxt "SettingsDialog|Zoom To Cursor Dropdown"
+msgid "Mousewheel & Keyboard"
+msgstr ""
+
+msgctxt "SettingsDialog|Rotate Around Cursor Dropdown"
+msgid "Never"
+msgstr ""
+
+msgctxt "SettingsDialog|Rotate Around Cursor Dropdown"
+msgid "Always"
+msgstr ""
+
+msgctxt "SettingsDialog|Rotate Around Cursor Dropdown"
+msgid "Movement Keys Only (While holding Ctrl)"
+msgstr ""
+
+msgctxt "SettingsDialog|Rotate Around Cursor Dropdown"
+msgid "Rotation Keys Only"
 msgstr ""
 
 msgctxt "SettingsDialog|Default Tag Mode Dropdown"
