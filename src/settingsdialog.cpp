@@ -720,6 +720,10 @@ void SettingsDialog::loadSettings()
         ui->comboBoxRenderer->setCurrentIndex(ui->comboBoxRenderer->findData(Settings::getKfxSetting("RENDERER").toString()));
     }
 
+    if (KfxVersion::hasFunctionality("map_fade_animation") == true) {
+        ui->checkBoxParchmentMapFade->setChecked(Settings::getLauncherSetting("PARCHMENT_MAP_FADE") == true);
+    }
+
     // =========================================================================
     // ================================ SOUND ==================================
     // =========================================================================
@@ -1002,6 +1006,10 @@ void SettingsDialog::saveSettings()
 
     if (KfxVersion::hasFunctionality("opengl_renderer") == true) {
         Settings::setKfxSetting("RENDERER", ui->comboBoxRenderer->currentData().toString());
+    }
+
+    if (KfxVersion::hasFunctionality("map_fade_animation") == true) {
+        Settings::setKfxSetting("PARCHMENT_MAP_FADE", ui->checkBoxParchmentMapFade->isChecked());
     }
 
     // =========================================================================

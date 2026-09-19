@@ -38,6 +38,7 @@ const QMap<QString, QPair<QString, QString>> KfxVersion::versionFunctionaltyMap 
     {"zoom_towards_mouse",                      {"",      "1.4.0.4323"}},
     {"rotate_around_mouse",                     {"",      "1.4.0.4323"}},
     {"opengl_renderer",                         {"",      "1.4.0.5389"}},
+    {"map_fade_animation",                      {"",      "1.4.0.5415"}},
 
 
 
