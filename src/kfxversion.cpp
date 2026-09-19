@@ -38,6 +38,7 @@ const QMap<QString, QPair<QString, QString>> KfxVersion::versionFunctionaltyMap 
     {"zoom_towards_mouse",                      {"",      "1.4.0.4323"}},
     {"rotate_around_mouse",                     {"",      "1.4.0.4323"}},
     {"opengl_renderer",                         {"",      "1.4.0.5389"}},
+    {"map_fade_animation",                      {"",      "1.4.0.5415"}},
 
 
 
@@ -140,7 +141,7 @@ KfxVersion::VersionInfo KfxVersion::getVersionFromString(QString versionString)
 
     // Use regex to get the version from the string
     // Catches 1.2.3 and 1.2.3.4
-    QRegularExpression regex (R"([0-9]+\.[0-9]+\.[0-9]+(?:\.[0-9]+)?)");
+    QRegularExpression regex (R"([0-9]+\.[0-9]+\.[0-9]+(\.[0-9]+)?)");
     QRegularExpressionMatch match = regex.match(versionString);
 
     // Check if regex has a match
@@ -152,7 +153,9 @@ KfxVersion::VersionInfo KfxVersion::getVersionFromString(QString versionString)
     versionInfo.version = match.captured(0);
 
     // Get the type of the release
-    if (versionInfo.version == versionString) {
+    if (match.captured(1) == ".0") {
+        versionInfo.type = KfxVersion::ReleaseType::DEVELOPMENT;
+    } else if (versionInfo.version == versionString) {
         versionInfo.type = KfxVersion::ReleaseType::STABLE;
         // Make sure only x.y.z are taken from stable version
         versionInfo.version = versionInfo.version.split('.').mid(0, 3).join('.');
@@ -164,6 +167,9 @@ KfxVersion::VersionInfo KfxVersion::getVersionFromString(QString versionString)
     } else {
         versionInfo.type = KfxVersion::ReleaseType::UNKNOWN;
     }
+
+    // Log the type
+    qDebug() << "Release type:" << versionString << "->" << versionInfo.type;
 
     return versionInfo;
 }

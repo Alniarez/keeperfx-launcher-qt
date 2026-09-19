@@ -313,8 +313,8 @@ height: 35px;
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>856</width>
-            <height>522</height>
+            <width>842</width>
+            <height>536</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -680,6 +680,13 @@ height: 35px;
                  </item>
                  <item row="4" column="1">
                   <widget class="QLineEdit" name="lineEditNeutralFlashRate"/>
+                 </item>
+                 <item row="5" column="0" colspan="2">
+                  <widget class="QCheckBox" name="checkBoxParchmentMapFade">
+                   <property name="text">
+                    <string>Enable map fade animation</string>
+                   </property>
+                  </widget>
                  </item>
                 </layout>
                </widget>

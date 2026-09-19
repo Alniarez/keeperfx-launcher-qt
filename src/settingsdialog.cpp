@@ -7,6 +7,7 @@
 #include "settings.h"
 #include "launcheroptions.h"
 #include "cdn.h"
+#include "helper.h"
 
 #include <QDesktopServices>
 #include <QEvent>
@@ -475,10 +476,8 @@ SettingsDialog::SettingsDialog(QWidget *parent)
         ui->labelLauncherTranslators->setText(""); // Hide
     }
 
-    // Fake a resize event to trigger the initial layout update
-    QResizeEvent *fakeResizeEvent = new QResizeEvent(size(), size());
-    resizeEvent(fakeResizeEvent);
-    delete fakeResizeEvent;
+    // Disable the scrolling of comboboxes when hovering over them and scrolling
+    Helper::disableAllComboBoxScrolls(this);
 }
 
 SettingsDialog::~SettingsDialog()
@@ -719,6 +718,10 @@ void SettingsDialog::loadSettings()
 
     if (KfxVersion::hasFunctionality("opengl_renderer") == true) {
         ui->comboBoxRenderer->setCurrentIndex(ui->comboBoxRenderer->findData(Settings::getKfxSetting("RENDERER").toString()));
+    }
+
+    if (KfxVersion::hasFunctionality("map_fade_animation") == true) {
+        ui->checkBoxParchmentMapFade->setChecked(Settings::getLauncherSetting("PARCHMENT_MAP_FADE") == true);
     }
 
     // =========================================================================
@@ -1003,6 +1006,10 @@ void SettingsDialog::saveSettings()
 
     if (KfxVersion::hasFunctionality("opengl_renderer") == true) {
         Settings::setKfxSetting("RENDERER", ui->comboBoxRenderer->currentData().toString());
+    }
+
+    if (KfxVersion::hasFunctionality("map_fade_animation") == true) {
+        Settings::setKfxSetting("PARCHMENT_MAP_FADE", ui->checkBoxParchmentMapFade->isChecked());
     }
 
     // =========================================================================
