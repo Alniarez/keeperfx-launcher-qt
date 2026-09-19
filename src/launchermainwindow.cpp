@@ -1355,15 +1355,27 @@ void LauncherMainWindow::onGameEnded(int exitCode, QProcess::ExitStatus exitStat
 
 void LauncherMainWindow::refreshKfxVersionInGui()
 {
+    // Get the current version
+    QString versionText = QString("v") + KfxVersion::currentVersion.fullString;
     qInfo() << "KeeperFX version:" << KfxVersion::currentVersion.fullString;
-    ui->versionLabel->setText("v" + KfxVersion::currentVersion.fullString);
 
+    // Check if version is a development build
+    if(KfxVersion::currentVersion.type == KfxVersion::DEVELOPMENT){
+        versionText.append(" [DEV]");
+    }
+
+    // Set version in the UI
+    ui->versionLabel->setText(versionText);
+
+    // Create window title
     QString windowTitle = tr("KeeperFX Launcher", "Window Title") + " - v" + KfxVersion::currentVersion.fullString;
 
+    // Show possible directory in the window title
     if(Settings::getLauncherSetting("SHOW_DIR_NAME_IN_WINDOW_TITLE") == true){
         windowTitle.prepend("[ " + QDir(QCoreApplication::applicationDirPath()).dirName() + " ] - ");
     }
 
+    // Set the window title
     this->setWindowTitle(windowTitle);
 }
 

@@ -8,6 +8,8 @@
 #include <QVariant>
 #include <QDirIterator>
 #include <QUuid>
+#include <QComboBox>
+#include <QWheelEvent>
 
 #ifdef Q_OS_WINDOWS
     #include <windows.h>
@@ -250,5 +252,66 @@ public:
         Q_UNUSED(path);
         return true;
 #endif
+    }
+
+    /**
+     * Disables background scrolling for a single QComboBox.
+     */
+    inline static void disableComboBoxScroll(QComboBox* comboBox) {
+        if (!comboBox) return;
+
+        comboBox->setFocusPolicy(Qt::StrongFocus);
+
+        class ScrollBlocker : public QObject {
+            protected:
+            bool eventFilter(QObject *obj, QEvent *event) override {
+                if (event->type() == QEvent::Wheel) {
+                    QComboBox* combo = qobject_cast<QComboBox*>(obj);
+
+                    // If combobox isn't focused, we block it from scrolling
+                    if (combo && !combo->hasFocus()) {
+                        QWheelEvent* wheelEvent = static_cast<QWheelEvent*>(event);
+
+                        // Manually bubble the wheel event up the widget tree.
+                        // This allows the QScrollArea to see the scroll wheel action.
+                        QWidget* parent = combo->parentWidget();
+                        while (parent) {
+                            wheelEvent->setAccepted(false); // Reset event state
+
+                            // Send event to the parent
+                            QCoreApplication::sendEvent(parent, wheelEvent);
+
+                            // If a parent (like a ScrollArea) accepts and handles it, stop bubbling
+                            if (wheelEvent->isAccepted()) {
+                                break;
+                            }
+
+                            // Move up to the next parent
+                            parent = parent->parentWidget();
+                        }
+
+                        // Return true to stop the QComboBox itself from changing values
+                        return true;
+                    }
+                }
+                return QObject::eventFilter(obj, event);
+            }
+        };
+
+        static ScrollBlocker filter;
+        comboBox->installEventFilter(&filter);
+    }
+
+    /**
+     * Recursively loops through a parent widget and disables scroll
+     * for all QComboBoxes and derived classes.
+     */
+    inline static void disableAllComboBoxScrolls(QWidget* parentWidget) {
+        if (!parentWidget) return;
+
+        // findChildren recursively grabs every QComboBox in the UI
+        for (QComboBox* combo : parentWidget->findChildren<QComboBox*>()) {
+            disableComboBoxScroll(combo);
+        }
     }
 };

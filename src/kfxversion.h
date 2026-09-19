@@ -15,6 +15,7 @@ public:
         STABLE,
         ALPHA,
         PROTOTYPE,
+        DEVELOPMENT,
     };
     Q_ENUM(ReleaseType)
 
